@@ -6,6 +6,7 @@ var THUMBNAIL_LINK_SELECTOR = '[data-image-role="trigger"]';
 var HIDDEN_DETAIL_CLASS = 'hidden-detail';
 var TINY_EFFECT_CLASS = 'is-tiny';
 var ESC_KEY = 27;
+var IMAGE_SELECTOR = 0;
 
 
 function setDetails(imageUrl, titleText) {
@@ -71,10 +72,39 @@ function addKeyPressHandler() {
         event.preventDefault();
         console.log(event.keyCode);
         if (event.keyCode === ESC_KEY) { 
-            hideDetails();
+            //hideDetails();
+
+            var thumbnails = getThumbnailsArray();
+            setDetailsFromThumb(thumbnails[IMAGE_SELECTOR]);
+            showDetails();
         }
     });
 }
+
+function navigation_left(){
+    'use strict';
+    var thumbnails = getThumbnailsArray();
+
+    IMAGE_SELECTOR -= 1;
+    if(IMAGE_SELECTOR < 0){
+        IMAGE_SELECTOR = 0;
+    }
+    setDetailsFromThumb(thumbnails[IMAGE_SELECTOR]);
+    showDetails();
+}
+
+function navigation_right(){
+    'use strict';
+    var thumbnails = getThumbnailsArray();
+
+    IMAGE_SELECTOR += 1;
+    if(IMAGE_SELECTOR > thumbnails.length){
+        IMAGE_SELECTOR = thumbnails.length;
+    }
+    setDetailsFromThumb(thumbnails[IMAGE_SELECTOR]);
+    showDetails();
+}
+
 
 function initializeEvents() {
     'use strict';

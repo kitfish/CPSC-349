@@ -147,3 +147,9 @@ a {
 .hidden-detail .thumbnail-item {
     max-width: 80%;
 }
+
+.button-prev, .button-next{
+  display: inline-block;
+    font-size: 18px;
+    padding: 16px 10px;
+}
